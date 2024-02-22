@@ -1,0 +1,46 @@
+<launch>
+    
+    <!--- Sim Time -->
+    <!-- <param name="/use_sim_time" default="false" /> -->
+    <arg name="roll" default="0.0" />
+    <arg name="pitch" default="0.0" />
+    <arg name="yaw" default="0.0" />
+    <arg name="x" default="0.0" />
+    <arg name="y" default="0.0" />
+    <arg name="z" default="0.0" />
+
+
+    <!-- <arg name="roll" default="1.570795" />
+    <arg name="pitch" default="0.0" />
+    <arg name="yaw" default="1.570795" />
+    <arg name="x" default="0.0" />
+    <arg name="y" default="0.0" />
+    <arg name="z" default="0.0" /> -->
+
+    <!--- Run Rviz-->
+    <!-- <node pkg="rviz1" type="rviz1" name="rviz1" args="-d $(find fast_lio)/rviz_cfg/rock-auto.rviz" /> -->
+
+    <!--- MapLoader -->    
+    <!-- <arg name="pcd_path"  default="/home/vecow/wx/data/map_3f2.pcd"/> -->
+    <!-- <arg name="pcd_path"  default="/home/seu/c7map/lio_feature_nclt_map/c7/1021/c7-0.02-cut2-d5.pcd"/> -->
+    <arg name="pcd_path"  default="/home/seu/c7map_for_wx/2012-01-15/map_pcd/GlobalMap.pcd"/>
+    <!-- <arg name="pcd_path"  default="/media/rdcas/dataset/map_result/kaist02.pcd"/> -->
+
+
+    
+    <arg name="map_topic" default="/points_map"/>
+
+
+    <node pkg="fast_lio" type="map_loader"    name="map_loader"    output="screen">
+        <param name="pcd_path" value="$(arg pcd_path)"/>
+        <param name="map_topic" value="$(arg map_topic)"/>
+
+        <param name="roll" value="$(arg roll)" />
+        <param name="pitch" value="$(arg pitch)" />
+        <param name="yaw" value="$(arg yaw)" />
+        <param name="x" value="$(arg x)" />
+        <param name="y" value="$(arg y)" />
+        <param name="z" value="$(arg z)" />
+    </node>
+
+</launch>
